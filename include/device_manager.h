@@ -15,7 +15,7 @@ namespace OpenClToolkit {
 	class DeviceManager {
 		private:
 			/**
-			 * The number of available devices on the current system.
+			 * The number of available platforms on the current system.
 			 */
 			cl_uint numAvailablePlatforms_;
 
@@ -106,7 +106,8 @@ namespace OpenClToolkit {
 			 * @param device the device to create a command queue for.
 			 * @return a command queue for the given device a context.
 			 */
-			[[maybe_unused]] [[nodiscard]] static cl_command_queue createCommandQueue(cl_context context, cl_device_id device);
+			[[maybe_unused]] [[nodiscard]] static cl_command_queue
+			createCommandQueue(cl_context context, cl_device_id device);
 
 			/**
 			 * @brief Prints to the stdout information about the available OpenCL-compatible devices on the current
