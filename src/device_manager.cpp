@@ -130,11 +130,11 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 			nullptr,
 			&status
 	);
-	if (CL_SUCCESS == status) {
-		return context;
-	} else {
+	if (status) {
 		// let it crash
 		throw std::runtime_error("Cannot create OpenCL context for device");
+	} else {
+		return context;
 	}
 }
 
@@ -146,11 +146,11 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 			0,
 			&status
 	);
-	if (CL_SUCCESS == status) {
-		return queue;
-	} else {
+	if (status) {
 		// let it crash
 		throw std::runtime_error("Cannot create command queue");
+	} else {
+		return queue;
 	}
 }
 
