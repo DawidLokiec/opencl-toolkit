@@ -14,32 +14,34 @@ DeviceManager::DeviceManager() : numAvailablePlatforms_(0), defaultDevice_(nullp
 	// check the available platforms (e.g. Intel, Nvidia, AMD etc.) on the current host
 	status = clGetPlatformIDs(0, nullptr, &numAvailablePlatforms_);
 	if (status) {
+		// let it crash
 		throw std::runtime_error("Cannot get the number of available platforms");
 	}
 
 	platformIds_.resize(numAvailablePlatforms_);
 	status = clGetPlatformIDs(numAvailablePlatforms_, &platformIds_[0], nullptr);
-
-	if (CL_SUCCESS != status) {
+	if (status) {
+		// let it crash
 		throw std::runtime_error("Cannot get the list of platforms");
 	}
 
 	// check the available devices for each platform
 	platformDevices_.resize(numAvailablePlatforms_);
-	for (cl_uint i = 0; i < numAvailablePlatforms_; ++i) {
-		cl_uint num_devices;
+	for (size_t i = 0; i < numAvailablePlatforms_; ++i) {
+		cl_uint numDevices;
 		clGetDeviceIDs(
 				platformIds_[i],
 				CL_DEVICE_TYPE_ALL,
 				0,
 				nullptr,
-				&num_devices
+				&numDevices
 		);
-		platformDevices_[i].resize(num_devices);
+		platformDevices_[i].resize(numDevices);
 		clGetDeviceIDs(
 				platformIds_[i],
 				CL_DEVICE_TYPE_ALL,
-				num_devices, &platformDevices_[i][0],
+				numDevices,
+				&platformDevices_[i][0],
 				nullptr
 		);
 	}
@@ -68,20 +70,20 @@ DeviceManager::DeviceManager() : numAvailablePlatforms_(0), defaultDevice_(nullp
 
 	// check the available GPUs
 	for (size_t i = 0; i < platformIds_.size(); ++i) {
-		cl_uint num_gpus = 0;
+		cl_uint numGpus = 0;
 		status = clGetDeviceIDs(
 				platformIds_[i],
 				CL_DEVICE_TYPE_GPU,
 				0,
 				nullptr,
-				&num_gpus
+				&numGpus
 		);
-		if (num_gpus > 0 && (CL_DEVICE_NOT_FOUND != status)) {
-			gpuIds_.resize(gpuIds_.size() + num_gpus);
+		if (numGpus > 0 && (CL_DEVICE_NOT_FOUND != status)) {
+			gpuIds_.resize(gpuIds_.size() + numGpus);
 			clGetDeviceIDs(
 					platformIds_[i],
 					CL_DEVICE_TYPE_GPU,
-					num_gpus,
+					numGpus,
 					&gpuIds_[i],
 					nullptr
 			);
@@ -154,30 +156,30 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 
 [[maybe_unused]] void DeviceManager::stdoutInfo() const {
 	std::cout << "Number of platforms available: " << numAvailablePlatforms_ << std::endl;
-	for (unsigned i = 0; i < numAvailablePlatforms_; ++i) {
+	for (size_t i = 0; i < numAvailablePlatforms_; ++i) {
 		// Get the platform name
-		char platform_name[256];
-		cl_int status = clGetPlatformInfo(
+		char platformName[256];
+		const cl_int status = clGetPlatformInfo(
 				platformIds_[i],
 				CL_PLATFORM_NAME,
 				sizeof(char) * 256,
-				platform_name,
+				platformName,
 				nullptr
 		);
-		if (status == CL_SUCCESS) {
-			std::cout << "Platform #" << (i + 1) << " name: " << platform_name << std::endl;
-		} else {
+		if (status) {
 			std::cerr << "Cannot get the name of the platform #" << (i + 1) << std::endl;
+		} else {
+			std::cout << "Platform #" << (i + 1) << " name: " << platformName << std::endl;
 		}
 		// Print the platform's devices
 		std::cout << "  Available devices for this platform: " << platformDevices_[i].size() << std::endl;
-		for (unsigned j = 0; j < platformDevices_[i].size(); j++) {
-			char device_name[256];
-			clGetDeviceInfo(platformDevices_[i][j], CL_DEVICE_NAME, sizeof(char) * 256, device_name, nullptr);
-			std::cout << "    Device type#" << (j + 1) << " name: " << device_name << std::endl;
-			cl_device_type device_type;
-			clGetDeviceInfo(platformDevices_[i][j], CL_DEVICE_TYPE, sizeof(char) * 256, &device_type, nullptr);
-			std::cout << "    Device type#" << (j + 1) << " type: " << deviceTypeToString(device_type) << std::endl;
+		for (size_t j = 0; j < platformDevices_[i].size(); j++) {
+			char deviceName[256];
+			clGetDeviceInfo(platformDevices_[i][j], CL_DEVICE_NAME, sizeof(char) * 256, deviceName, nullptr);
+			std::cout << "    Device type#" << (j + 1) << " name: " << deviceName << std::endl;
+			cl_device_type deviceType;
+			clGetDeviceInfo(platformDevices_[i][j], CL_DEVICE_TYPE, sizeof(char) * 256, &deviceType, nullptr);
+			std::cout << "    Device type#" << (j + 1) << " type: " << deviceTypeToString(deviceType) << std::endl;
 		}
 	}
 }
