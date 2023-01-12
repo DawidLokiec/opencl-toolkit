@@ -99,6 +99,10 @@ Program::~Program() {
 	}
 }
 
+[[maybe_unused]] cl_kernel Program::getKernel() const {
+	return kernel_;
+}
+
 [[maybe_unused]] void Program::setKernelArg(const cl_uint argIndex, const size_t argSize, const void *argValue) {
 	cl_int status;
 	status = clSetKernelArg(
