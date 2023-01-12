@@ -53,6 +53,12 @@ namespace OpenClToolkit {
 			~Program();
 
 			/**
+			 * @brief Returns the kernel of the current program.
+			 * @return the kernel of the current
+			 */
+			[[maybe_unused]] [[nodiscard]] cl_kernel getKernel() const;
+
+			/**
 			 * @brief Sets the argument value for a specific argument of the current associated kernel.
 			 * @param argIndex the argument index. 0 for the leftmost argument to n - 1.
 			 * @param argSize  specifies the size of the argument value.

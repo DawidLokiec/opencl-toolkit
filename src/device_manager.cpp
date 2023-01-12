@@ -138,22 +138,6 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 	}
 }
 
-[[maybe_unused]] cl_command_queue DeviceManager::createCommandQueue(cl_context context, cl_device_id device) {
-	cl_int status;
-	cl_command_queue queue = clCreateCommandQueue(
-			context,
-			device,
-			0,
-			&status
-	);
-	if (status) {
-		// let it crash
-		throw std::runtime_error("Cannot create command queue");
-	} else {
-		return queue;
-	}
-}
-
 [[maybe_unused]] void DeviceManager::stdoutInfo() const {
 	std::cout << "Number of platforms available: " << numAvailablePlatforms_ << std::endl;
 	for (size_t i = 0; i < numAvailablePlatforms_; ++i) {
