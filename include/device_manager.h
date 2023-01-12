@@ -2,6 +2,7 @@
 #define OPENCL_TOOLKIT_DEVICE_MANAGER_H
 
 #include "portable_opencl_include.h"
+#include "command_queue.h"
 #include <vector>
 #include <string>
 
@@ -99,15 +100,6 @@ namespace OpenClToolkit {
 			 * @return a context for the given device a context.
 			 */
 			[[maybe_unused]] [[nodiscard]] static cl_context createOpenClContextForDevice(cl_device_id device);
-
-			/**
-			 * @brief Creates for the given device a command queue.
-			 * @param context a valid OpenCL-context. Must be the same context used by the given device.
-			 * @param device the device to create a command queue for.
-			 * @return a command queue for the given device a context.
-			 */
-			[[maybe_unused]] [[nodiscard]] static cl_command_queue
-			createCommandQueue(cl_context context, cl_device_id device);
 
 			/**
 			 * @brief Prints to the stdout information about the available OpenCL-compatible devices on the current

@@ -7,7 +7,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(${PROJECT_NAME}
         src/buffer_factories.cpp
-        src/device_manager.cpp include/program.h src/program.cpp)
+        src/device_manager.cpp
+        src/program.cpp
+        src/command_queue.cpp
+        src/error.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include/)
 # A CMake pattern to have headers that are not seen by the consumers of this library.
