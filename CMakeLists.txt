@@ -6,11 +6,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(${PROJECT_NAME}
-        src/buffer_factories.cpp
         src/device_manager.cpp
         src/program.cpp
         src/command_queue.cpp
-        src/error.cpp)
+        src/error.cpp
+        src/base_buffer.cpp
+        src/read_only_buffer.cpp
+        src/write_only_buffer.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include/)
 # A CMake pattern to have headers that are not seen by the consumers of this library.
