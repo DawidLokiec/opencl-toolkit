@@ -25,7 +25,7 @@ namespace OpenClToolkit {
 			 * @param context a valid context.
 			 * @param deviceId a valid device id.
 			 */
-			[[maybe_unused]] CommandQueue(cl_context context, cl_device_id deviceId);
+			[[maybe_unused]] CommandQueue(const Context& context, cl_device_id deviceId);
 
 			/**
 			 *  @brief The destructor. Releases the current command queue.

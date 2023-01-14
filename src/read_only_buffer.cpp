@@ -2,6 +2,7 @@
 
 using namespace OpenClToolkit;
 
-ReadOnlyBuffer::ReadOnlyBuffer(cl_context context, const size_t size) : BaseBuffer(context, size, CL_MEM_READ_ONLY) {
+[[maybe_unused]] ReadOnlyBuffer::ReadOnlyBuffer(const Context &context, const size_t size) :
+		BaseBuffer(context, size, CL_MEM_READ_ONLY) {
 
 }

@@ -4,7 +4,7 @@
 
 using namespace OpenClToolkit;
 
-BaseBuffer::BaseBuffer(cl_context context, const size_t size, const cl_mem_flags flags) {
+BaseBuffer::BaseBuffer(const Context& context, const size_t size, const cl_mem_flags flags) {
 	cl_int status;
 	self_ = clCreateBuffer(context, flags, size, nullptr, &status);
 	if (status) {

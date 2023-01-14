@@ -15,7 +15,7 @@ namespace OpenClToolkit {
 			 * @param context a valid OpenCL-context.
 			 * @param size the size of the buffer in bytes.
 			 */
-			WriteOnlyBuffer(cl_context context, size_t size);
+			[[maybe_unused]] WriteOnlyBuffer(const Context& context, size_t size);
 	};
 }
 

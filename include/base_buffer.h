@@ -2,6 +2,7 @@
 #define OPENCL_TOOLKIT_ABSTRACT_BUFFER_H
 
 #include "portable_opencl_include.h"
+#include "context.h"
 #include <string>
 
 namespace OpenClToolkit {
@@ -17,7 +18,7 @@ namespace OpenClToolkit {
 			cl_mem self_;
 
 		protected:
-			BaseBuffer(cl_context context, size_t size, cl_mem_flags flags);
+			BaseBuffer(const Context& context, size_t size, cl_mem_flags flags);
 
 		public:
 			virtual ~BaseBuffer();
