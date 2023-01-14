@@ -16,7 +16,7 @@ BaseBuffer::BaseBuffer(cl_context context, const size_t size, const cl_mem_flags
 BaseBuffer::~BaseBuffer() {
 	const cl_int status = clReleaseMemObject(self_);
 	if (status) {
-		std::cerr << "Failed to release the buffer: " + getFailureDescription(status) << std::endl;
+		std::cerr << "Failed to release buffer: " + getFailureDescription(status) << std::endl;
 	}
 }
 
