@@ -95,13 +95,6 @@ namespace OpenClToolkit {
 			[[nodiscard]] static std::string deviceTypeToString(cl_device_type type);
 
 			/**
-			 * @brief Creates for the given device a context.
-			 * @param device the device to create a context for.
-			 * @return a context for the given device a context.
-			 */
-			[[maybe_unused]] [[nodiscard]] static cl_context createOpenClContextForDevice(cl_device_id device);
-
-			/**
 			 * @brief Prints to the stdout information about the available OpenCL-compatible devices on the current
 			 * system.
 			 */

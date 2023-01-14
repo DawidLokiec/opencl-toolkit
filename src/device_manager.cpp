@@ -120,24 +120,6 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 	}
 }
 
-[[maybe_unused]] cl_context DeviceManager::createOpenClContextForDevice(cl_device_id device) {
-	cl_int status;
-	cl_context context = clCreateContext(
-			nullptr,
-			1,
-			&device,
-			nullptr,
-			nullptr,
-			&status
-	);
-	if (status) {
-		// let it crash
-		throw std::runtime_error("Cannot create OpenCL context for device");
-	} else {
-		return context;
-	}
-}
-
 [[maybe_unused]] void DeviceManager::stdoutInfo() const {
 	std::cout << "Number of platforms available: " << numAvailablePlatforms_ << std::endl;
 	for (size_t i = 0; i < numAvailablePlatforms_; ++i) {

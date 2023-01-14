@@ -45,7 +45,7 @@ namespace OpenClToolkit {
 			[[maybe_unused]] Program(
 					const char *kernelSourceCode,
 					const std::string &kernelName,
-					cl_context context,
+					const Context& context,
 					cl_device_id device
 			);
 
