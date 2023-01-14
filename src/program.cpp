@@ -143,6 +143,10 @@ Program::~Program() {
 	}
 }
 
+[[maybe_unused]] void Program::setKernelArg(cl_uint argIndex, size_t argSize, cl_mem buffer) {
+	setKernelArg(argIndex,argSize, &buffer);
+}
+
 size_t Program::getMaxWorkGroupSizeInBytes() const {
 	size_t size = -1;
 	cl_int status = clGetKernelWorkGroupInfo(

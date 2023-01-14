@@ -3,6 +3,8 @@
 
 #include "portable_opencl_include.h"
 #include <string>
+#include "read_only_buffer.h"
+#include "write_only_buffer.h"
 
 namespace OpenClToolkit {
 
@@ -65,6 +67,14 @@ namespace OpenClToolkit {
 			 * @param argValue the pointer to data that should be used as the argument value for argument specified by arg_index.
 			 */
 			[[maybe_unused]] void setKernelArg(cl_uint argIndex, size_t argSize, const void *argValue);
+
+			/**
+			 * @brief Sets the argument value for a specific argument of the current associated kernel.
+			 * @param argIndex the argument index. 0 for the leftmost argument to n - 1.
+			 * @param argSize  specifies the size of the argument value.
+			 * @param buffer the buffer that should be used as the argument value for argument specified by arg_index.
+			 */
+			[[maybe_unused]] void setKernelArg(cl_uint argIndex, size_t argSize, cl_mem buffer);
 
 			/**
 			 * @brief Returns the max work group size in bytes for the kernel of the current program.
