@@ -2,6 +2,8 @@
 #define OPENCL_TOOLKIT_COMMAND_QUEUE_H
 
 #include "portable_opencl_include.h"
+#include "read_only_buffer.h"
+#include "write_only_buffer.h"
 #include "program.h"
 
 namespace OpenClToolkit {
@@ -32,12 +34,12 @@ namespace OpenClToolkit {
 
 			[[maybe_unused]] void enqueueCommandCopyBytesFromHostMemoryIntoDeviceMemory(
 					void *sourceHostMemory,
-					cl_mem destinationDeviceMemory,
+					const ReadOnlyBuffer& destinationDeviceMemory,
 					size_t numBytesToCopy
 			);
 
 			[[maybe_unused]] void enqueueCommandCopyBytesFromDeviceMemoryIntoHostMemory(
-					cl_mem sourceDeviceMemory,
+					const WriteOnlyBuffer& sourceDeviceMemory,
 					void *destinationHostMemory,
 					size_t numBytesToCopy
 			);

@@ -23,7 +23,7 @@ CommandQueue::~CommandQueue() {
 
 [[maybe_unused]] void CommandQueue::enqueueCommandCopyBytesFromHostMemoryIntoDeviceMemory(
 		void *sourceHostMemory,
-		cl_mem destinationDeviceMemory,
+		const ReadOnlyBuffer &destinationDeviceMemory,
 		const size_t numBytesToCopy
 ) {
 	const cl_int status = clEnqueueWriteBuffer(
@@ -46,7 +46,7 @@ CommandQueue::~CommandQueue() {
 }
 
 [[maybe_unused]] void CommandQueue::enqueueCommandCopyBytesFromDeviceMemoryIntoHostMemory(
-		cl_mem sourceDeviceMemory,
+		const WriteOnlyBuffer &sourceDeviceMemory,
 		void *destinationHostMemory,
 		const size_t numBytesToCopy
 ) {
@@ -90,4 +90,3 @@ CommandQueue::~CommandQueue() {
 		throw std::runtime_error("Failed to executed the program: " + toErrorDescription(status));
 	}
 }
-
