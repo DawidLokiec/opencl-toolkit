@@ -21,13 +21,15 @@ target_include_directories(${PROJECT_NAME} PUBLIC include/)
 target_include_directories(${PROJECT_NAME} PRIVATE src)
 
 if (MSVC)
-    # PUBLIC = use this compile options also while compiling other projects
+    # PRIVATE specifies that the specified compile options are only for the ${PROJECT_NAME} itself,
+    # and not for any targets that link to it.
     # warning level 4 and all warnings as errors
-    target_compile_options(${PROJECT_NAME} PUBLIC /W4 /WX)
+    target_compile_options(${PROJECT_NAME} PRIVATE /W4 /WX)
 else ()
-    # PUBLIC = use this compile options also while compiling other projects
+    # PRIVATE specifies that the specified compile options are only for the ${PROJECT_NAME} itself,
+    # and not for any targets that link to it.
     # lots of warnings and all warnings as errors
-    target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -pedantic -Werror)
+    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror)
 endif ()
 
 #OpenCL
