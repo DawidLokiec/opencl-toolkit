@@ -4,6 +4,9 @@
 #include "portable_opencl_include.h"
 #include <string>
 
+/**
+ * @brief Namespace of this toolkit.
+ */
 namespace OpenClToolkit {
 
 	class Context {

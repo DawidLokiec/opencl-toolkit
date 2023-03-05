@@ -5,6 +5,9 @@
 #include "context.h"
 #include <string>
 
+/**
+ * @brief Namespace of this toolkit.
+ */
 namespace OpenClToolkit {
 
 	/**

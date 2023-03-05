@@ -3,6 +3,9 @@
 
 #include "base_buffer.h"
 
+/**
+ * @brief Namespace of this toolkit.
+ */
 namespace OpenClToolkit {
 
 	/**
