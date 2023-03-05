@@ -6,12 +6,15 @@
 #include <vector>
 #include <string>
 
+/**
+ * @brief Namespace of this toolkit.
+ */
 namespace OpenClToolkit {
 
 	/**
-	 * Represents a global manager to deal with OpenCL-compatible devices. The manager is implemented as singleton and
-	 * can be used to create OpenCL-contexts, command queues and/or retrieve information about the available devices on
-	 * the current system.
+	 * @brief Represents a global manager to deal with OpenCL-compatible devices.
+	 * @details The manager is implemented as singleton and can be used to create OpenCL-contexts,
+	 * command queues and/or retrieve information about the available devices on the current system.
 	 */
 	class DeviceManager {
 		private:
@@ -39,6 +42,11 @@ namespace OpenClToolkit {
 			 * The IDs of OpenCL-compatible GPUs on the current system, if any.
 			 */
 			std::vector<cl_device_id> gpuIds_;
+
+			/**
+			 * The id of the OpenCL-compatible device with the most compute units on the current system, if any.
+			 */
+			cl_device_id deviceWithMostComputeUnits_;
 
 			/**
 			 * The default constructor. Creates a new instance of the current class.
@@ -88,6 +96,12 @@ namespace OpenClToolkit {
 			[[maybe_unused]] [[nodiscard]] std::vector<cl_device_id> getOpenClCompatibleGpus() const;
 
 			/**
+			 * @brief Returns the id of the OpenCL-compatible device with the most compute units.
+			 * @return the id of the OpenCL-compatible device with the most compute units.
+			 */
+			[[maybe_unused]] [[nodiscard]] cl_device_id getDeviceWithMostComputeUnits() const;
+
+			/**
 			 * @brief Converts the given device type as a magic number into a meaningful string.
 			 * @param type the device type to be converted into a meaningful string.
 			 * @return the given device type as a magic number into a meaningful string.
@@ -95,10 +109,11 @@ namespace OpenClToolkit {
 			[[nodiscard]] static std::string deviceTypeToString(cl_device_type type);
 
 			/**
-			 * @brief Prints to the stdout information about the available OpenCL-compatible devices on the current
-			 * system.
+			 * @brief Constructs debug information about the available OpenCL-compatible devices on the current system.
+			 * @return debug information about the available OpenCL-compatible devices on the current system.
 			 */
-			[[maybe_unused]] void stdoutInfo() const;
+			[[maybe_unused]] [[nodiscard]] std::string
+			constructDebugInfoAboutAvailableOpenClDevicesOnCurrentSystem() const;
 	};
 }
 #endif //OPENCL_TOOLKIT_DEVICE_MANAGER_H

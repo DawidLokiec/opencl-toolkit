@@ -4,6 +4,9 @@
 #include <string>
 #include "portable_opencl_include.h"
 
+/**
+ * @brief Namespace of this toolkit.
+ */
 namespace OpenClToolkit {
 
 	/**

@@ -6,6 +6,9 @@
 #include "read_only_buffer.h"
 #include "write_only_buffer.h"
 
+/**
+ * @brief Namespace of this toolkit.
+ */
 namespace OpenClToolkit {
 
 	/**
