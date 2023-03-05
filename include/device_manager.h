@@ -98,10 +98,11 @@ namespace OpenClToolkit {
 			[[nodiscard]] static std::string deviceTypeToString(cl_device_type type);
 
 			/**
-			 * @brief Prints to the stdout information about the available OpenCL-compatible devices on the current
-			 * system.
+			 * @brief Constructs debug information about the available OpenCL-compatible devices on the current system.
+			 * @return debug information about the available OpenCL-compatible devices on the current system.
 			 */
-			[[maybe_unused]] void stdoutInfo() const;
+			[[maybe_unused]] [[nodiscard]] std::string
+			constructDebugInfoAboutAvailableOpenClDevicesOnCurrentSystem() const;
 	};
 }
 #endif //OPENCL_TOOLKIT_DEVICE_MANAGER_H

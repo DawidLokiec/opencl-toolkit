@@ -1,10 +1,10 @@
 #include "device_manager.h"
 #include <stdexcept>
-#include <iostream>
+#include <sstream>
 
 using namespace OpenClToolkit;
 
-[[maybe_unused]]DeviceManager &DeviceManager::getInstance() {
+[[maybe_unused]] DeviceManager &DeviceManager::getInstance() {
 	static DeviceManager instance;
 	return instance;
 }
@@ -120,8 +120,10 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 	}
 }
 
-[[maybe_unused]] void DeviceManager::stdoutInfo() const {
-	std::cout << "Number of platforms available: " << numAvailablePlatforms_ << std::endl;
+[[maybe_unused]] std::string DeviceManager::constructDebugInfoAboutAvailableOpenClDevicesOnCurrentSystem() const {
+	std::stringstream stringStream;
+	stringStream << "Number of platforms available: " << numAvailablePlatforms_ << std::endl;
+	const size_t sizeof256Characters = sizeof(char) * 256;
 	for (size_t i = 0; i < numAvailablePlatforms_; ++i) {
 		// Get the platform name
 		char platformName[256];
@@ -133,19 +135,32 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 				nullptr
 		);
 		if (status) {
-			std::cerr << "Cannot get the name of the platform #" << (i + 1) << std::endl;
+			stringStream << "Cannot get the name of the platform #" << (i + 1) << std::endl;
 		} else {
-			std::cout << "Platform #" << (i + 1) << " name: " << platformName << std::endl;
+			stringStream << "Platform #" << (i + 1) << " name: " << platformName << std::endl;
 		}
 		// Print the platform's devices
-		std::cout << "  Available devices for this platform: " << platformDevices_[i].size() << std::endl;
-		for (size_t j = 0; j < platformDevices_[i].size(); j++) {
+		stringStream << "\tAvailable devices for this platform: " << platformDevices_[i].size() << std::endl;
+		for (size_t j = 0; j < platformDevices_[i].size(); ++j) {
 			char deviceName[256];
-			clGetDeviceInfo(platformDevices_[i][j], CL_DEVICE_NAME, sizeof(char) * 256, deviceName, nullptr);
-			std::cout << "    Device type#" << (j + 1) << " name: " << deviceName << std::endl;
+			clGetDeviceInfo(
+					platformDevices_[i][j],
+					CL_DEVICE_NAME,
+					sizeof256Characters,
+					deviceName,
+					nullptr
+			);
+			stringStream << "\t\tDevice name#" << (j + 1) << " name: " << deviceName << std::endl;
 			cl_device_type deviceType;
-			clGetDeviceInfo(platformDevices_[i][j], CL_DEVICE_TYPE, sizeof(char) * 256, &deviceType, nullptr);
-			std::cout << "    Device type#" << (j + 1) << " type: " << deviceTypeToString(deviceType) << std::endl;
+			clGetDeviceInfo(
+					platformDevices_[i][j],
+					CL_DEVICE_TYPE,
+					sizeof256Characters,
+					&deviceType,
+					nullptr
+			);
+			stringStream << "\t\tDevice type#" << (j + 1) << " type: " << deviceTypeToString(deviceType) << std::endl;
 		}
 	}
+	return stringStream.str();
 }
