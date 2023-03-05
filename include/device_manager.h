@@ -7,7 +7,7 @@
 #include <string>
 
 /**
- * @brief Namespace of this library.
+ * @brief Namespace of this toolkit.
  */
 namespace OpenClToolkit {
 
@@ -42,6 +42,11 @@ namespace OpenClToolkit {
 			 * The IDs of OpenCL-compatible GPUs on the current system, if any.
 			 */
 			std::vector<cl_device_id> gpuIds_;
+
+			/**
+			 * The id of the OpenCL-compatible device with the most compute units on the current system, if any.
+			 */
+			cl_device_id deviceWithMostComputeUnits_;
 
 			/**
 			 * The default constructor. Creates a new instance of the current class.
@@ -89,6 +94,12 @@ namespace OpenClToolkit {
 			 * @return a list all OpenCL-compatible GPUs available on the current system.
 			 */
 			[[maybe_unused]] [[nodiscard]] std::vector<cl_device_id> getOpenClCompatibleGpus() const;
+
+			/**
+			 * @brief Returns the id of the OpenCL-compatible device with the most compute units.
+			 * @return the id of the OpenCL-compatible device with the most compute units.
+			 */
+			[[maybe_unused]] [[nodiscard]] cl_device_id getDeviceWithMostComputeUnits() const;
 
 			/**
 			 * @brief Converts the given device type as a magic number into a meaningful string.

@@ -9,7 +9,10 @@ using namespace OpenClToolkit;
 	return instance;
 }
 
-DeviceManager::DeviceManager() : numAvailablePlatforms_(0), defaultDevice_(nullptr) {
+DeviceManager::DeviceManager() :
+		numAvailablePlatforms_(0),
+		defaultDevice_(nullptr),
+		deviceWithMostComputeUnits_(nullptr) {
 	cl_int status;
 	// check the available platforms (e.g. Intel, Nvidia, AMD etc.) on the current host
 	status = clGetPlatformIDs(0, nullptr, &numAvailablePlatforms_);
@@ -89,6 +92,28 @@ DeviceManager::DeviceManager() : numAvailablePlatforms_(0), defaultDevice_(nullp
 			);
 		}
 	}
+
+	cl_uint maxComputeUnits = 0;
+	// check the device with most compute units
+	for (size_t i = 0; i < platformIds_.size(); ++i) {
+		for (const auto device: platformDevices_[i]) {
+			cl_uint numComputeUnits;
+			status = clGetDeviceInfo(
+					device,
+					CL_DEVICE_MAX_COMPUTE_UNITS,
+					sizeof(numComputeUnits),
+					&numComputeUnits,
+					nullptr
+			);
+			if (status) {
+				// let it crash
+				throw std::runtime_error("Cannot get the max number of compute units");
+			} else if (numComputeUnits > maxComputeUnits) {
+				maxComputeUnits = numComputeUnits;
+				deviceWithMostComputeUnits_ = device;
+			}
+		}
+	}
 }
 
 [[maybe_unused]] bool DeviceManager::isDefaultDeviceAvailable() const {
@@ -105,6 +130,10 @@ DeviceManager::DeviceManager() : numAvailablePlatforms_(0), defaultDevice_(nullp
 
 [[maybe_unused]] std::vector<cl_device_id> DeviceManager::getOpenClCompatibleGpus() const {
 	return gpuIds_;
+}
+
+[[maybe_unused]] [[nodiscard]] cl_device_id DeviceManager::getDeviceWithMostComputeUnits() const {
+	return deviceWithMostComputeUnits_;
 }
 
 std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
