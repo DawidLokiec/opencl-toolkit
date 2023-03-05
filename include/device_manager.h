@@ -6,12 +6,15 @@
 #include <vector>
 #include <string>
 
+/**
+ * @brief Namespace of this library.
+ */
 namespace OpenClToolkit {
 
 	/**
-	 * Represents a global manager to deal with OpenCL-compatible devices. The manager is implemented as singleton and
-	 * can be used to create OpenCL-contexts, command queues and/or retrieve information about the available devices on
-	 * the current system.
+	 * @brief Represents a global manager to deal with OpenCL-compatible devices.
+	 * @details The manager is implemented as singleton and can be used to create OpenCL-contexts,
+	 * command queues and/or retrieve information about the available devices on the current system.
 	 */
 	class DeviceManager {
 		private:
