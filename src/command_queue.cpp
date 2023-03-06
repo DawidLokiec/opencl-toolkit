@@ -1,8 +1,8 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "command_queue.h"
-#include "error.h"
+#include "opencl/command_queue.h"
+#include "opencl/error.h"
 
 using namespace OpenClToolkit;
 

@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "program.h"
+#include "opencl/program.h"
 
 using namespace OpenClToolkit;
 

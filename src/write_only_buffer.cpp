@@ -1,4 +1,4 @@
-#include "write_only_buffer.h"
+#include "opencl/write_only_buffer.h"
 
 using namespace OpenClToolkit;
 

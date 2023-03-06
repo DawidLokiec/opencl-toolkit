@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include <sstream>
 
-#include "device_manager.h"
+#include "opencl/device_manager.h"
 
 using namespace OpenClToolkit;
 

@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "base_buffer.h"
+#include "opencl/base_buffer.h"
 
 using namespace OpenClToolkit;
 

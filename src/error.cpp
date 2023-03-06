@@ -1,4 +1,4 @@
-#include "error.h"
+#include "opencl/error.h"
 
 std::string OpenClToolkit::toErrorDescription(const cl_int errorCode) {
 	switch (errorCode) {
