@@ -1,6 +1,7 @@
-#include "program.h"
 #include <stdexcept>
 #include <iostream>
+
+#include "program.h"
 
 using namespace OpenClToolkit;
 

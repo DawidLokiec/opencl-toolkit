@@ -2,6 +2,7 @@
 #define OPENCL_TOOLKIT_ERROR_H
 
 #include <string>
+
 #include "portable_opencl_include.h"
 
 /**

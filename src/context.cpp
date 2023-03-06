@@ -1,6 +1,7 @@
-#include "context.h"
 #include <stdexcept>
 #include <iostream>
+
+#include "context.h"
 
 using namespace OpenClToolkit;
 

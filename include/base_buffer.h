@@ -1,9 +1,10 @@
 #ifndef OPENCL_TOOLKIT_ABSTRACT_BUFFER_H
 #define OPENCL_TOOLKIT_ABSTRACT_BUFFER_H
 
+#include <string>
+
 #include "portable_opencl_include.h"
 #include "context.h"
-#include <string>
 
 /**
  * @brief Namespace of this toolkit.

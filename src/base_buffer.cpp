@@ -1,10 +1,11 @@
-#include "base_buffer.h"
 #include <stdexcept>
 #include <iostream>
 
+#include "base_buffer.h"
+
 using namespace OpenClToolkit;
 
-BaseBuffer::BaseBuffer(const Context& context, const size_t size, const cl_mem_flags flags) {
+BaseBuffer::BaseBuffer(const Context &context, const size_t size, const cl_mem_flags flags) {
 	cl_int status;
 	self_ = clCreateBuffer(context, flags, size, nullptr, &status);
 	if (status) {

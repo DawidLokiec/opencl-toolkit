@@ -1,10 +1,11 @@
 #ifndef OPENCL_TOOLKIT_DEVICE_MANAGER_H
 #define OPENCL_TOOLKIT_DEVICE_MANAGER_H
 
-#include "portable_opencl_include.h"
-#include "command_queue.h"
 #include <vector>
 #include <string>
+
+#include "portable_opencl_include.h"
+#include "command_queue.h"
 
 /**
  * @brief Namespace of this toolkit.
