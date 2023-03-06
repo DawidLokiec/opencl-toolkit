@@ -1,8 +1,9 @@
 #ifndef OPENCL_TOOLKIT_CONTEXT_H
 #define OPENCL_TOOLKIT_CONTEXT_H
 
-#include "portable_opencl_include.h"
 #include <string>
+
+#include "portable_opencl_include.h"
 
 /**
  * @brief Namespace of this toolkit.

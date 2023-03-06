@@ -1,4 +1,4 @@
-#include "read_only_buffer.h"
+#include "opencl/read_only_buffer.h"
 
 using namespace OpenClToolkit;
 

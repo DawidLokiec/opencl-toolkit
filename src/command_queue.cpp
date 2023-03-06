@@ -1,11 +1,12 @@
-#include "command_queue.h"
 #include <stdexcept>
-#include "error.h"
 #include <iostream>
+
+#include "opencl/command_queue.h"
+#include "opencl/error.h"
 
 using namespace OpenClToolkit;
 
-[[maybe_unused]] CommandQueue::CommandQueue(const Context& context, cl_device_id deviceId) {
+[[maybe_unused]] CommandQueue::CommandQueue(const Context &context, cl_device_id deviceId) {
 	cl_int status = CL_SUCCESS;
 	self_ = clCreateCommandQueue(context, deviceId, 0, &status);
 	if (status) {

@@ -1,8 +1,9 @@
 #ifndef OPENCL_TOOLKIT_PROGRAM_H
 #define OPENCL_TOOLKIT_PROGRAM_H
 
-#include "portable_opencl_include.h"
 #include <string>
+
+#include "portable_opencl_include.h"
 #include "read_only_buffer.h"
 #include "write_only_buffer.h"
 
