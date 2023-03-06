@@ -148,7 +148,7 @@ Program::~Program() {
 }
 
 size_t Program::getMaxWorkGroupSizeInBytes() const {
-	size_t size = -1;
+	size_t size = 0;
 	cl_int status = clGetKernelWorkGroupInfo(
 			kernel_,
 			device_,
@@ -168,7 +168,7 @@ size_t Program::getMaxWorkGroupSizeInBytes() const {
 }
 
 cl_ulong Program::getDeviceGlobalMemorySizeInBytes() const {
-	cl_ulong size = -1;
+	cl_ulong size = 0;
 	cl_int status = clGetDeviceInfo(
 			device_,
 			CL_DEVICE_GLOBAL_MEM_SIZE,
@@ -188,7 +188,7 @@ cl_ulong Program::getDeviceGlobalMemorySizeInBytes() const {
 }
 
 size_t Program::getDeviceMaxGlobalVariableSizeInBytes() const {
-	size_t size = -1;
+	size_t size = 0;
 	cl_int status = clGetDeviceInfo(
 			device_,
 			CL_DEVICE_MAX_GLOBAL_VARIABLE_SIZE,
@@ -209,7 +209,7 @@ size_t Program::getDeviceMaxGlobalVariableSizeInBytes() const {
 }
 
 size_t Program::getDeviceLocalMemorySizeInBytes() const {
-	cl_ulong size = -1;
+	cl_ulong size = 0;
 	cl_int status = clGetDeviceInfo(
 			device_,
 			CL_DEVICE_LOCAL_MEM_SIZE,
