@@ -165,9 +165,9 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 				nullptr
 		);
 		if (status) {
-			stringStream << "Cannot get the name of the platform #" << (i + 1) << std::endl;
+			stringStream << "Cannot get the name of the platform #" << std::to_string(i + 1) << std::endl;
 		} else {
-			stringStream << "Platform #" << (i + 1) << " name: " << platformName << std::endl;
+			stringStream << "Platform #" << std::to_string(i + 1) << " name: " << platformName << std::endl;
 		}
 		// Print the platform's devices
 		stringStream << "\tAvailable devices for this platform: " << platformDevices_[i].size() << std::endl;
@@ -180,7 +180,7 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 					deviceName,
 					nullptr
 			);
-			stringStream << "\t\tDevice name#" << (j + 1) << " name: " << deviceName << std::endl;
+			stringStream << "\t\tDevice name#" << std::to_string(j + 1) << " name: " << deviceName << std::endl;
 			cl_device_type deviceType;
 			clGetDeviceInfo(
 					platformDevices_[i][j],
@@ -189,7 +189,11 @@ std::string DeviceManager::deviceTypeToString(const cl_device_type type) {
 					&deviceType,
 					nullptr
 			);
-			stringStream << "\t\tDevice type#" << (j + 1) << " type: " << deviceTypeToString(deviceType) << std::endl;
+			stringStream << "\t\tDevice type#"
+						 << std::to_string(j + 1)
+						 << " type: "
+						 << deviceTypeToString(deviceType)
+						 << std::endl;
 		}
 	}
 	return stringStream.str();
