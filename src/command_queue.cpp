@@ -8,7 +8,7 @@ using namespace OpenClToolkit;
 
 [[maybe_unused]] CommandQueue::CommandQueue(const Context &context, cl_device_id deviceId) {
 	cl_int status = CL_SUCCESS;
-	self_ = clCreateCommandQueue(context, deviceId, 0, &status);
+	self_ = clCreateCommandQueueWithProperties(context, deviceId, nullptr, &status);
 	if (status) {
 		// let it crash
 		throw std::runtime_error("Failed to create command queue. " + toErrorDescription(status));

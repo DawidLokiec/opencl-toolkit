@@ -50,7 +50,7 @@ namespace OpenClToolkit {
 			cl_device_id deviceWithMostComputeUnits_;
 
 			/**
-			 * The default constructor. Creates a new instance of the current class.
+			 * @brief The default constructor. Creates a new instance of the current class.
 			 */
 			DeviceManager();
 
